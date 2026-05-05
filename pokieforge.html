@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PokieForge</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+<!-- Font -->
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;500;700&display=swap" rel="stylesheet">
+
+<style>
+body {
+  font-family: 'Unbounded', sans-serif;
+  background: radial-gradient(circle at top, #111827, #020617);
+}
+.card {
+  background: rgba(255,255,255,0.05);
+  backdrop-filter: blur(12px);
+}
+</style>
+</head>
+
+<body class="text-white p-6">
+
+<h1 class="text-4xl font-bold text-center mb-6 bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
+⚡ PokieForge
+</h1>
+
+<input id="search" placeholder="Search Pokémon..."
+class="w-full max-w-xl mx-auto block mb-6 p-3 rounded-xl bg-zinc-900 border border-zinc-700"/>
+
+<div class="grid md:grid-cols-2 gap-6">
+
+<div class="card p-4 rounded-xl">
+<h2 class="mb-3">Pokédex</h2>
+<div id="list" class="max-h-[500px] overflow-auto space-y-2"></div>
+</div>
+
+<div class="card p-4 rounded-xl">
+<h2 class="mb-3">Details</h2>
+<div id="details"></div>
+</div>
+
+</div>
+
+<div class="mt-8 card p-4 rounded-xl">
+<h2 class="mb-3">Team Builder</h2>
+<div id="team" class="flex flex-wrap gap-2 mb-4"></div>
+<div id="teamWeakness"></div>
+</div>
+
+<script>
+const API = "https://pokeapi.co/api/v2/pokemon?limit=10000";
+let pokemonList = [];
+let team = JSON.parse(localStorage.getItem("team") || "[]");
+
+/* FULL TYPE CHART */
+const types = ["normal","fire","water","electric","grass","ice","fighting","poison","ground","flying","psychic","bug","rock","ghost","dragon","dark","steel","fairy"];
+
+const typeEffectiveness = {
+normal:{rock:0.5,ghost:0,steel:0.5},
+fire:{grass:2,ice:2,bug:2,steel:2,fire:0.5,water:0.5,rock:0.5,dragon:0.5},
+water:{fire:2,ground:2,rock:2,water:0.5,grass:0.5,dragon:0.5},
+electric:{water:2,flying:2,electric:0.5,grass:0.5,dragon:0.5,ground:0},
+grass:{water:2,ground:2,rock:2,fire:0.5,grass:0.5,poison:0.5,flying:0.5,bug:0.5,dragon:0.5,steel:0.5},
+ice:{grass:2,ground:2,flying:2,dragon:2,fire:0.5,water:0.5,ice:0.5,steel:0.5},
+fighting:{normal:2,ice:2,rock:2,dark:2,steel:2,poison:0.5,flying:0.5,psychic:0.5,bug:0.5,fairy:0.5,ghost:0},
+poison:{grass:2,fairy:2,poison:0.5,ground:0.5,rock:0.5,ghost:0.5,steel:0},
+ground:{fire:2,electric:2,poison:2,rock:2,steel:2,grass:0.5,bug:0.5,flying:0},
+flying:{grass:2,fighting:2,bug:2,electric:0.5,rock:0.5,steel:0.5},
+psychic:{fighting:2,poison:2,psychic:0.5,steel:0.5,dark:0},
+bug:{grass:2,psychic:2,dark:2,fire:0.5,fighting:0.5,poison:0.5,flying:0.5,ghost:0.5,steel:0.5,fairy:0.5},
+rock:{fire:2,ice:2,flying:2,bug:2,fighting:0.5,ground:0.5,steel:0.5},
+ghost:{psychic:2,ghost:2,dark:0.5,normal:0},
+dragon:{dragon:2,steel:0.5,fairy:0},
+dark:{psychic:2,ghost:2,fighting:0.5,dark:0.5,fairy:0.5},
+steel:{ice:2,rock:2,fairy:2,fire:0.5,water:0.5,electric:0.5,steel:0.5},
+fairy:{fighting:2,dragon:2,dark:2,fire:0.5,poison:0.5,steel:0.5}
+};
+
+async function init(){
+  const res = await fetch(API);
+  const data = await res.json();
+  pokemonList = data.results;
+  renderList(pokemonList);
+  renderTeam();
+}
+
+function renderList(list){
+  const el = document.getElementById("list");
+  el.innerHTML="";
+  list.slice(0,300).forEach(p=>{
+    const div=document.createElement("div");
+    div.className="p-2 bg-zinc-800 rounded hover:bg-zinc-700 cursor-pointer capitalize";
+    div.innerText=p.name;
+    div.onclick=()=>loadPokemon(p.name);
+    el.appendChild(div);
+  });
+}
+
+async function loadPokemon(name){
+  const p = await fetch(`https://pokeapi.co/api/v2/pokemon/${name}`).then(r=>r.json());
+  const types = p.types.map(t=>t.type.name);
+
+  const weaknesses = calcWeakness(types);
+  const counters = rankCounters(types);
+
+  const moves = p.moves.slice(0,50);
+  const moveDetails = await Promise.all(moves.map(m=>fetch(m.move.url).then(r=>r.json())));
+
+  const bestMoves = moveDetails
+    .filter(m=>m.power)
+    .sort((a,b)=>b.power-a.power)
+    .slice(0,5)
+    .map(m=>m.name);
+
+  document.getElementById("details").innerHTML=`
+    <h3 class="text-2xl capitalize">${p.name}</h3>
+    <img src="${p.sprites.front_default}" class="mb-2"/>
+    
+    <p><b>Types:</b> ${types.join(", ")}</p>
+    <p><b>Weaknesses:</b> ${formatWeakness(weaknesses)}</p>
+    <p><b>Best Counters:</b> ${counters.slice(0,5).join(", ")}</p>
+    <p><b>Best Moves:</b> ${bestMoves.join(", ")}</p>
+
+    <button onclick="addToTeam('${p.name}')"
+    class="mt-3 bg-blue-600 px-3 py-1 rounded">Add to Team</button>
+  `;
+}
+
+function calcWeakness(defTypes){
+  let result = {};
+  types.forEach(atk=>{
+    let mult=1;
+    defTypes.forEach(def=>{
+      const val = typeEffectiveness[atk]?.[def] ?? 1;
+      mult *= val;
+    });
+    if(mult!==1) result[atk]=mult;
+  });
+  return result;
+}
+
+function formatWeakness(obj){
+  return Object.entries(obj)
+    .sort((a,b)=>b[1]-a[1])
+    .map(([t,v])=>`${t} x${v}`)
+    .join(", ");
+}
+
+function rankCounters(defTypes){
+  return Object.keys(calcWeakness(defTypes))
+    .sort((a,b)=>calcWeakness(defTypes)[b]-calcWeakness(defTypes)[a]);
+}
+
+function addToTeam(name){
+  if(team.length>=6) return;
+  team.push(name);
+  saveTeam();
+}
+
+function renderTeam(){
+  const el=document.getElementById("team");
+  el.innerHTML="";
+  team.forEach(p=>{
+    const div=document.createElement("div");
+    div.className="bg-purple-600 px-3 py-1 rounded capitalize";
+    div.innerText=p;
+    el.appendChild(div);
+  });
+
+  calcTeamWeakness();
+}
+
+async function calcTeamWeakness(){
+  let weaknessCount={};
+
+  for(const name of team){
+    const p = await fetch(`https://pokeapi.co/api/v2/pokemon/${name}`).then(r=>r.json());
+    const types = p.types.map(t=>t.type.name);
+    const weak = calcWeakness(types);
+
+    Object.entries(weak).forEach(([t,v])=>{
+      if(v>1) weaknessCount[t]=(weaknessCount[t]||0)+v;
+    });
+  }
+
+  document.getElementById("teamWeakness").innerHTML =
+    "<b>Team Weakness:</b> " +
+    Object.entries(weaknessCount)
+    .sort((a,b)=>b[1]-a[1])
+    .map(([t,v])=>`${t} (${v})`)
+    .join(", ");
+}
+
+function saveTeam(){
+  localStorage.setItem("team", JSON.stringify(team));
+  renderTeam();
+}
+
+document.getElementById("search").addEventListener("input", e=>{
+  const val=e.target.value.toLowerCase();
+  renderList(pokemonList.filter(p=>p.name.includes(val)));
+});
+
+init();
+</script>
+
+</body>
+</html>
