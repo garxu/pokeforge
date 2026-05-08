@@ -7,9 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,700&family=Nunito:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-/* ═══════════════════════════════════════════════════════════
-   ROOT VARIABLES
-═══════════════════════════════════════════════════════════ */
+
 :root {
   --bg-0:#05070e;
   --bg-1:#090c17;
@@ -43,7 +41,7 @@
   --font-b:'Nunito',sans-serif;
   --font-m:'JetBrains Mono',monospace;
 }
-/* Type palette */
+
 :root {
   --t-normal:#A8A878;--t-fire:#F08030;--t-water:#6890F0;--t-electric:#F8D030;
   --t-grass:#78C850;--t-ice:#98D8D8;--t-fighting:#C03028;--t-poison:#A040A0;
@@ -51,9 +49,7 @@
   --t-rock:#B8A038;--t-ghost:#705898;--t-dragon:#7038F8;--t-dark:#705848;
   --t-steel:#B8B8D0;--t-fairy:#EE99AC;
 }
-/* ═══════════════════════════════════════════════════════════
-   RESET & BASE
-═══════════════════════════════════════════════════════════ */
+
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth;font-size:16px}
 body{font-family:var(--font-b);background:var(--bg-0);color:var(--text-0);min-height:100vh;overflow-x:hidden;line-height:1.6;-webkit-font-smoothing:antialiased}
@@ -64,17 +60,13 @@ input{font-family:var(--font-b);outline:none;border:none}
 ::-webkit-scrollbar{width:5px;height:5px}
 ::-webkit-scrollbar-track{background:var(--bg-0)}
 ::-webkit-scrollbar-thumb{background:var(--border-mid);border-radius:3px}
-/* ═══════════════════════════════════════════════════════════
-   BACKGROUND GRAIN
-═══════════════════════════════════════════════════════════ */
+
 body::before{
   content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
   background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
   opacity:.5;
 }
-/* ═══════════════════════════════════════════════════════════
-   NAVBAR
-═══════════════════════════════════════════════════════════ */
+
 .navbar{
   position:sticky;top:0;z-index:200;
   background:rgba(5,7,14,0.82);backdrop-filter:blur(24px);
@@ -103,9 +95,7 @@ body::before{
 }
 .nav-pill:hover{background:var(--bg-3);color:var(--text-0)}
 .nav-pill.active{background:var(--accent-dim);color:var(--accent);border:1px solid rgba(255,210,0,.2)}
-/* ═══════════════════════════════════════════════════════════
-   HERO
-═══════════════════════════════════════════════════════════ */
+
 .hero{
   position:relative;padding:clamp(56px,9vw,96px) clamp(16px,4vw,48px) clamp(40px,6vw,64px);
   text-align:center;overflow:hidden;
@@ -132,7 +122,7 @@ body::before{
 .hero-h1 .line1{display:block;color:var(--text-0)}
 .hero-h1 .line2{display:block;color:var(--accent);text-shadow:0 0 80px rgba(255,210,0,.35)}
 .hero-sub{font-size:clamp(.9rem,2vw,1.1rem);color:var(--text-1);max-width:500px;margin:0 auto 36px;line-height:1.7}
-/* SEARCH BOX */
+
 .hero-search-wrap{max-width:580px;margin:0 auto;position:relative}
 .hero-search-box{
   display:flex;align-items:center;
@@ -154,7 +144,7 @@ body::before{
   transition:background var(--t) var(--ease),transform var(--t) var(--ease),box-shadow var(--t) var(--ease);
 }
 .hero-btn:hover{background:#ffe640;transform:scale(1.03);box-shadow:0 0 20px var(--accent-glow)}
-/* AUTOCOMPLETE */
+
 .autocomplete{
   position:absolute;top:calc(100% + 10px);left:0;right:0;
   background:var(--bg-3);border:1px solid var(--border-mid);
@@ -171,7 +161,7 @@ body::before{
 .ac-item img{width:40px;height:40px;object-fit:contain;image-rendering:pixelated}
 .ac-name{font-weight:700;font-size:.88rem;text-transform:capitalize;color:var(--text-0)}
 .ac-id{font-family:var(--font-m);font-size:.72rem;color:var(--text-3)}
-/* CHIPS */
+
 .hero-chips{display:flex;flex-wrap:wrap;justify-content:center;gap:7px;margin-top:14px}
 .chip-label{font-size:.75rem;color:var(--text-3);align-self:center}
 .chip{
@@ -180,9 +170,7 @@ body::before{
   transition:border-color var(--t) var(--ease),color var(--t) var(--ease);
 }
 .chip:hover{border-color:rgba(255,210,0,.35);color:var(--accent)}
-/* ═══════════════════════════════════════════════════════════
-   TABS BAR
-═══════════════════════════════════════════════════════════ */
+
 .tabs-wrap{display:flex;justify-content:center;padding:0 16px 28px}
 .tabs{
   display:inline-flex;align-items:center;gap:3px;
@@ -196,31 +184,23 @@ body::before{
 }
 .tab.on{background:var(--accent);color:#000}
 .tab:not(.on):hover{background:var(--bg-3);color:var(--text-0)}
-/* ═══════════════════════════════════════════════════════════
-   MAIN LAYOUT
-═══════════════════════════════════════════════════════════ */
+
 .main{
   max-width:1380px;margin:0 auto;
   padding:0 clamp(12px,3.5vw,44px) 80px;
 }
-/* ═══════════════════════════════════════════════════════════
-   LOADING
-═══════════════════════════════════════════════════════════ */
+
 .loader{display:none;flex-direction:column;align-items:center;gap:18px;padding:90px 0}
 .loader.on{display:flex}
 .pb-spin{width:64px;height:64px;animation:spin 1s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
 .loader-txt{font-family:var(--font-h);font-size:.95rem;color:var(--text-2);font-weight:700;letter-spacing:.05em}
-/* ═══════════════════════════════════════════════════════════
-   EMPTY STATE
-═══════════════════════════════════════════════════════════ */
+
 .empty{text-align:center;padding:70px 20px}
 .empty svg{margin:0 auto 18px;opacity:.25}
 .empty-title{font-family:var(--font-h);font-size:1.4rem;font-weight:800;margin-bottom:8px}
 .empty-sub{font-size:.9rem;color:var(--text-2)}
-/* ═══════════════════════════════════════════════════════════
-   PANEL BASE
-═══════════════════════════════════════════════════════════ */
+
 .panel{
   background:var(--bg-1);border:1px solid var(--border-dim);
   border-radius:var(--radius-lg);overflow:hidden;
@@ -236,18 +216,16 @@ body::before{
 }
 .panel-icon{color:var(--accent);flex-shrink:0}
 .panel-body{padding:18px 20px}
-/* ═══════════════════════════════════════════════════════════
-   POKEMON RESULT
-═══════════════════════════════════════════════════════════ */
+
 #poke-result{display:none}
 #poke-result.on{display:block}
-/* Header grid */
+
 .poke-header{
   display:grid;grid-template-columns:300px 1fr;gap:18px;
   margin-bottom:18px;align-items:start;
 }
 @media(max-width:880px){.poke-header{grid-template-columns:1fr}}
-/* ─── LEFT CARD ─── */
+
 .poke-card{
   background:var(--bg-1);border:1px solid var(--border-dim);
   border-radius:var(--radius-xl);overflow:hidden;
@@ -301,7 +279,7 @@ body::before{
 .meta-box.full{grid-column:1/-1}
 .meta-lbl{font-size:.65rem;font-weight:800;color:var(--text-3);letter-spacing:.07em;text-transform:uppercase;margin-bottom:2px}
 .meta-val{font-size:.88rem;font-weight:700;text-transform:capitalize}
-/* STATS */
+
 .sec-label{font-size:.7rem;font-weight:800;color:var(--text-3);letter-spacing:.07em;text-transform:uppercase;margin-bottom:10px}
 .stat-row{display:grid;grid-template-columns:58px 36px 1fr 32px;align-items:center;gap:8px;margin-bottom:7px}
 .stat-lbl{font-size:.68rem;color:var(--text-2);font-weight:700;text-transform:uppercase;letter-spacing:.03em}
@@ -313,7 +291,7 @@ body::before{
   display:grid;grid-template-columns:58px 36px 1fr 32px;align-items:center;gap:8px;
   border-top:1px solid var(--border-dim);padding-top:6px;margin-top:4px;
 }
-/* IV TABLE */
+
 .iv-box{background:var(--bg-2);border-radius:var(--radius-sm);padding:12px;margin-top:12px}
 .iv-head{display:grid;grid-template-columns:56px 1fr 36px 36px;gap:6px;margin-bottom:6px}
 .iv-hcell{font-size:.62rem;font-weight:800;color:var(--text-3);text-transform:uppercase;letter-spacing:.05em;text-align:center}
@@ -326,9 +304,9 @@ body::before{
 .iv-min{color:var(--text-2)}
 .iv-max{color:var(--text-0);font-weight:700}
 .iv-note{font-size:.62rem;color:var(--text-3);margin-top:6px}
-/* ─── RIGHT INFO STACK ─── */
+
 .info-stack{display:flex;flex-direction:column;gap:14px}
-/* NATURES */
+
 .nature-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:8px}
 .nature-card{
   background:var(--bg-2);border:1px solid var(--border-dim);
@@ -340,7 +318,7 @@ body::before{
 .nature-desc{font-size:.68rem;color:var(--text-2)}
 .up-stat{color:#3ddc84}
 .dn-stat{color:#ff6b6b}
-/* TYPE EFFECTIVENESS */
+
 .te-groups{display:flex;flex-direction:column;gap:10px}
 .te-group-title{font-size:.68rem;font-weight:800;color:var(--text-3);text-transform:uppercase;letter-spacing:.06em;margin-bottom:5px}
 .te-chips{display:flex;flex-wrap:wrap;gap:5px}
@@ -356,7 +334,7 @@ body::before{
 .mhalf{background:rgba(61,158,255,.18);color:#5aaeff}
 .mquar{background:rgba(61,100,255,.18);color:#8abaff}
 .mzero{background:rgba(120,120,120,.18);color:#909090}
-/* EVOLUTION */
+
 .evo-chain{display:flex;align-items:center;flex-wrap:wrap;gap:6px;justify-content:center}
 .evo-node{
   display:flex;flex-direction:column;align-items:center;gap:5px;cursor:pointer;
@@ -370,7 +348,7 @@ body::before{
 .evo-lv{font-size:.62rem;color:var(--text-3);text-align:center}
 .evo-arrow{display:flex;flex-direction:column;align-items:center;gap:2px;color:var(--text-3)}
 .evo-trigger{font-size:.62rem;text-align:center;max-width:60px;color:var(--text-3)}
-/* COUNTERS */
+
 .counters-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(88px,1fr));gap:10px}
 .counter-card{
   background:var(--bg-2);border:1px solid var(--border-dim);
@@ -382,9 +360,7 @@ body::before{
 .counter-name{font-size:.68rem;font-weight:800;text-transform:capitalize;margin-top:4px;color:var(--text-1)}
 .counter-types{display:flex;justify-content:center;gap:3px;margin-top:4px}
 .ct-dot{width:6px;height:6px;border-radius:50%}
-/* ═══════════════════════════════════════════════════════════
-   BEST MOVES
-═══════════════════════════════════════════════════════════ */
+
 .best-moves-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px}
 .bm-card{
   background:var(--bg-2);border:1px solid var(--border-dim);
@@ -401,9 +377,7 @@ body::before{
 .bms-cell{text-align:center;background:var(--bg-1);border-radius:var(--radius-xs);padding:6px 4px}
 .bms-lbl{font-size:.6rem;color:var(--text-3);font-weight:800;text-transform:uppercase;letter-spacing:.04em}
 .bms-val{font-family:var(--font-m);font-size:.88rem;font-weight:700;margin-top:2px}
-/* ═══════════════════════════════════════════════════════════
-   MOVES TABLE
-═══════════════════════════════════════════════════════════ */
+
 .filter-bar{display:flex;flex-wrap:wrap;gap:6px;padding:14px 20px;border-bottom:1px solid var(--border-dim);background:var(--bg-2)}
 .filter-btn{
   padding:5px 13px;border-radius:100px;font-size:.78rem;font-weight:700;
@@ -441,9 +415,7 @@ table.moves-t{width:100%;border-collapse:collapse;font-size:.83rem;min-width:600
 .pwr{font-family:var(--font-m);font-weight:700}
 .acc{font-family:var(--font-m);font-size:.78rem;color:var(--text-1)}
 .pp-val{font-family:var(--font-m);font-size:.78rem;color:var(--text-2)}
-/* ═══════════════════════════════════════════════════════════
-   MOVE SEARCH TAB
-═══════════════════════════════════════════════════════════ */
+
 .move-search-box{max-width:560px;margin:0 auto 24px;position:relative}
 .move-detail-card{max-width:680px;margin:0 auto;background:var(--bg-1);border:1px solid var(--border-dim);border-radius:var(--radius-xl);overflow:hidden}
 #move-result{display:none}
@@ -459,9 +431,7 @@ table.moves-t{width:100%;border-collapse:collapse;font-size:.83rem;min-width:600
 .md-desc{background:var(--bg-2);border:1px solid var(--border-dim);border-radius:var(--radius-sm);padding:14px;font-size:.88rem;color:var(--text-1);line-height:1.75;margin-bottom:16px}
 .md-effects-lbl{font-size:.68rem;font-weight:800;color:var(--text-3);text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px}
 .md-effects{font-size:.85rem;color:var(--text-1);line-height:1.75}
-/* ═══════════════════════════════════════════════════════════
-   ANIMATIONS
-═══════════════════════════════════════════════════════════ */
+
 @keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
 .fade-in{animation:fadeUp .4s var(--ease) forwards}
 .d1{animation-delay:.04s;opacity:0}
@@ -470,9 +440,7 @@ table.moves-t{width:100%;border-collapse:collapse;font-size:.83rem;min-width:600
 .d4{animation-delay:.16s;opacity:0}
 .d5{animation-delay:.20s;opacity:0}
 .d6{animation-delay:.24s;opacity:0}
-/* ═══════════════════════════════════════════════════════════
-   FOOTER
-═══════════════════════════════════════════════════════════ */
+
 footer{
   background:var(--bg-1);border-top:1px solid var(--border-dim);
   padding:clamp(28px,5vw,48px) clamp(16px,4vw,48px);text-align:center;
@@ -486,9 +454,7 @@ footer{
 .ft-credit strong{color:var(--text-1)}
 .ft-api{margin-top:7px;font-size:.72rem;color:var(--text-3)}
 .ft-api a{color:var(--accent)}
-/* ═══════════════════════════════════════════════════════════
-   RESPONSIVE
-═══════════════════════════════════════════════════════════ */
+
 @media(max-width:640px){
   .nav-right{display:none}
   .hero-btn span{display:none}
@@ -509,9 +475,6 @@ footer{
 </head>
 <body>
 
-<!-- ══════════════════════════════════════════
-     NAVBAR
-══════════════════════════════════════════ -->
 <nav class="navbar">
   <div class="logo" onclick="goHome()">
     <svg class="logo-mark" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -540,14 +503,11 @@ footer{
   </div>
 </nav>
 
-<!-- ══════════════════════════════════════════
-     HERO
-══════════════════════════════════════════ -->
 <section class="hero" id="heroSec">
   <div class="hero-glow"></div>
   <div class="hero-badge"><div class="hero-badge-dot"></div>Powered by PokéAPI</div>
   <h1 class="hero-h1">
-    <span class="line2">PokéForge</span>
+    Poké<span class="line2">Forge</span>
   </h1>
   <p class="hero-sub">Explore every Pokémon's stats, moves, counters, type matchups, evolution chains, and competitive builds — all in one place.</p>
   <div class="hero-search-wrap">
@@ -573,12 +533,7 @@ footer{
   </div>
 </section>
 
-<!-- ══════════════════════════════════════════
-     MAIN
-══════════════════════════════════════════ -->
 <div class="main">
-
-  <!-- LOADER -->
   <div class="loader" id="loader">
     <svg class="pb-spin" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
       <circle cx="32" cy="32" r="30" stroke="#131828" stroke-width="4"/>
@@ -590,9 +545,7 @@ footer{
     <div class="loader-txt">Fetching from PokéAPI…</div>
   </div>
 
-  <!-- TAB: POKÉDEX -->
   <div id="tabPokemon">
-    <!-- TABS BAR (shown after search) -->
     <div class="tabs-wrap" id="tabsBar" style="display:none">
       <div class="tabs">
         <button class="tab on" id="subtabOverviewBtn" onclick="switchSubtab('overview')">
@@ -606,12 +559,9 @@ footer{
       </div>
     </div>
 
-    <!-- POKEMON RESULT -->
     <div id="poke-result">
-      <!-- OVERVIEW SUBTAB -->
       <div id="sub-overview">
         <div class="poke-header">
-          <!-- LEFT: POKE CARD -->
           <div class="poke-card fade-in" id="pokeCard">
             <div class="poke-banner" id="pokeBanner">
               <div class="poke-banner-bg" id="bannerBg"></div>
@@ -644,9 +594,7 @@ footer{
             </div>
           </div>
 
-          <!-- RIGHT STACK -->
           <div class="info-stack">
-            <!-- NATURES -->
             <div class="panel fade-in d1" id="naturePanel">
               <div class="panel-head">
                 <div class="panel-title">
@@ -658,7 +606,7 @@ footer{
                 <div class="nature-grid" id="natureGrid"></div>
               </div>
             </div>
-            <!-- TYPE EFFECTIVENESS -->
+
             <div class="panel fade-in d2">
               <div class="panel-head">
                 <div class="panel-title">
@@ -670,7 +618,7 @@ footer{
                 <div class="te-groups" id="teGrid"></div>
               </div>
             </div>
-            <!-- EVOLUTION -->
+
             <div class="panel fade-in d3">
               <div class="panel-head">
                 <div class="panel-title">
@@ -682,7 +630,7 @@ footer{
                 <div class="evo-chain" id="evoChain"></div>
               </div>
             </div>
-            <!-- COUNTERS -->
+
             <div class="panel fade-in d4">
               <div class="panel-head">
                 <div class="panel-title">
@@ -698,7 +646,6 @@ footer{
           </div>
         </div>
 
-        <!-- BEST MOVES PANEL -->
         <div class="panel fade-in d5" style="margin-bottom:14px">
           <div class="panel-head">
             <div class="panel-title">
@@ -713,7 +660,6 @@ footer{
         </div>
       </div>
 
-      <!-- MOVESET SUBTAB -->
       <div id="sub-moveset" style="display:none">
         <div class="panel fade-in">
           <div class="panel-head">
@@ -747,9 +693,8 @@ footer{
           </div>
         </div>
       </div>
-    </div><!-- /poke-result -->
+    </div>
 
-    <!-- EMPTY / HOME STATE -->
     <div class="empty" id="homeState">
       <svg width="90" height="90" viewBox="0 0 90 90" fill="none">
         <circle cx="45" cy="45" r="43" stroke="#131828" stroke-width="3"/>
@@ -761,10 +706,8 @@ footer{
       <div class="empty-title">Search for a Pokémon</div>
       <div class="empty-sub">Enter a name or Pokédex number above to explore stats, moves, counters, and more.</div>
     </div>
+  </div>
 
-  </div><!-- /tabPokemon -->
-
-  <!-- TAB: MOVES -->
   <div id="tabMoves" style="display:none">
     <div class="move-search-box">
       <div class="hero-search-box" style="border-color:var(--border-mid)">
@@ -812,15 +755,11 @@ footer{
       <div class="empty-title">Search for a Move</div>
       <div class="empty-sub">Enter a move name to see full details: power, accuracy, category, effect, and more.</div>
     </div>
-  </div><!-- /tabMoves -->
+  </div>
+</div>
 
-</div><!-- /main -->
-
-<!-- ══════════════════════════════════════════
-     FOOTER
-══════════════════════════════════════════ -->
 <footer>
-  <div class="ft-logo">Poke<em>Forge</em></div>
+  <div class="ft-logo">Poké<em>Forge</em></div>
   <div class="ft-desc">The ultimate Pokémon database for trainers — built with passion for the world's greatest franchise.</div>
   <div class="ft-divider"></div>
   <div class="ft-credit">
@@ -833,13 +772,7 @@ footer{
   </div>
 </footer>
 
-<!-- ══════════════════════════════════════════
-     JAVASCRIPT
-══════════════════════════════════════════ -->
 <script>
-/* ══════════════════════════════════════════════════
-   CONSTANTS
-══════════════════════════════════════════════════ */
 const TC = {
   normal:'#A8A878',fire:'#F08030',water:'#6890F0',electric:'#F8D030',
   grass:'#78C850',ice:'#98D8D8',fighting:'#C03028',poison:'#A040A0',
@@ -849,7 +782,6 @@ const TC = {
 };
 const ALL_TYPES = Object.keys(TC);
 
-// Offensive effectiveness: TYPE_ATK -> {DEF_TYPE: multiplier}
 const EFF = {
   normal:   {rock:.5,steel:.5,ghost:0},
   fire:     {fire:.5,water:.5,rock:.5,dragon:.5,grass:2,ice:2,bug:2,steel:2},
@@ -890,7 +822,6 @@ const NATURES = {
 const STAT_NAMES = {hp:'HP',attack:'Atk',defense:'Def','special-attack':'Sp.Atk','special-defense':'Sp.Def',speed:'Spd'};
 const STAT_COLORS = {hp:'#ff5555',attack:'#ff9a3c',defense:'#5aaeff','special-attack':'#cc77ee','special-defense':'#3ddc84',speed:'#ffd200'};
 
-// Curated counters per type weakness
 const COUNTER_DB = {
   fire:['politoed','swampert','gastrodon','slowbro','rotom-wash'],
   water:['ferrothorn','venusaur','toxapex','tangrowth','rotom-mow'],
@@ -912,9 +843,6 @@ const COUNTER_DB = {
   normal:['lucario','conkeldurr','machamp','hawlucha','infernape']
 };
 
-/* ══════════════════════════════════════════════════
-   STATE
-══════════════════════════════════════════════════ */
 let allPokemon = [];
 let moveCache = {};
 let currentData = null;
@@ -924,9 +852,6 @@ let shinyMode = false;
 let rawMoves = [];
 let activeFilter = 'all';
 
-/* ══════════════════════════════════════════════════
-   BOOT
-══════════════════════════════════════════════════ */
 window.addEventListener('DOMContentLoaded', () => {
   fetchPokemonList();
   bindInputs();
@@ -940,9 +865,6 @@ async function fetchPokemonList() {
   } catch(e) { console.warn('List fetch failed', e); }
 }
 
-/* ══════════════════════════════════════════════════
-   INPUT BINDING
-══════════════════════════════════════════════════ */
 function bindInputs() {
   const hi = document.getElementById('heroInput');
   const ni = document.getElementById('navInput');
@@ -978,9 +900,6 @@ function autocomplete(q, id) {
   d.classList.add('open');
 }
 
-/* ══════════════════════════════════════════════════
-   NAVIGATION
-══════════════════════════════════════════════════ */
 function showTab(tab) {
   document.getElementById('tabPokemon').style.display = tab==='pokemon' ? 'block' : 'none';
   document.getElementById('tabMoves').style.display = tab==='moves' ? 'block' : 'none';
@@ -1002,9 +921,6 @@ function switchSubtab(sub) {
   document.getElementById('subtabMovesBtn').classList.toggle('on', sub==='moveset');
 }
 
-/* ══════════════════════════════════════════════════
-   POKEMON SEARCH
-══════════════════════════════════════════════════ */
 function triggerHeroSearch() {
   const v = document.getElementById('heroInput').value.trim();
   if (v) { quickSearch(v); document.getElementById('heroAC').classList.remove('open'); }
@@ -1035,7 +951,6 @@ async function searchPokemon(q) {
     shinyMode = false;
     spriteIdx = 0;
 
-    // Build sprite array
     const sp = poke.sprites;
     currentSprites = [
       sp.other?.['official-artwork']?.front_default,
@@ -1045,12 +960,10 @@ async function searchPokemon(q) {
       sp.other?.home?.front_default,
     ].filter(Boolean);
 
-    // Fetch moves in parallel (top 70)
     rawMoves = poke.moves;
     const movesToFetch = poke.moves.slice(0, 70);
     await Promise.allSettled(movesToFetch.map(m => fetchMove(m.move.name)));
 
-    // Evolution chain
     let evo = null;
     if (spec?.evolution_chain?.url) {
       try {
@@ -1074,9 +987,6 @@ async function fetchMove(name) {
   } catch(e){}
 }
 
-/* ══════════════════════════════════════════════════
-   RENDER POKEMON
-══════════════════════════════════════════════════ */
 function renderPokemon(d, spec, evo) {
   setLoading(false);
 
@@ -1084,23 +994,17 @@ function renderPokemon(d, spec, evo) {
   const primary = types[0];
   const color = TC[primary] || '#5a6080';
 
-  // Sprite
   const sprite = currentSprites[0] || `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${d.id}.png`;
   document.getElementById('pokeSprite').src = sprite;
   document.getElementById('pokeSprite').alt = d.name;
 
-  // Banner
   document.getElementById('bannerBg').style.background = `linear-gradient(135deg, ${color}30 0%, ${color}10 60%, transparent 100%)`;
 
-  // ID / Name
   document.getElementById('pokeId').textContent = `#${String(d.id).padStart(4,'0')}`;
   document.getElementById('pokeName').textContent = d.name.replace(/-/g,' ');
 
-  // Types
-  document.getElementById('typeRow').innerHTML = types.map(t =>
-    `<span class="type-badge" style="background:${TC[t]}">${t}</span>`).join('');
+  document.getElementById('typeRow').innerHTML = types.map(t => `<span class="type-badge" style="background:${TC[t]}">${t}</span>`).join('');
 
-  // Meta
   const h = (d.height/10).toFixed(1);
   const w = (d.weight/10).toFixed(1);
   const abilities = d.abilities.map(a => a.ability.name.replace(/-/g,' ')).join(', ');
@@ -1117,34 +1021,21 @@ function renderPokemon(d, spec, evo) {
     ${genus?`<div class="meta-box full"><div class="meta-lbl">Species</div><div class="meta-val">${genus}</div></div>`:''}
   `;
 
-  // Stats
   renderStats(d.stats);
-
-  // Natures
   renderNatures(d.stats);
-
-  // Type Effectiveness
   renderTypeEff(types);
 
-  // Evolution
   if (evo) renderEvo(evo.chain, d.name);
   else document.getElementById('evoChain').innerHTML = `<span style="color:var(--text-3);font-size:.83rem">No evolution data</span>`;
 
-  // Counters
   renderCounters(types);
-
-  // Best Moves
   renderBestMoves(rawMoves, types);
-
-  // Full Moves Table
   renderMovesTable(rawMoves, 'all');
 
-  // Show result
   document.getElementById('poke-result').classList.add('on');
   document.getElementById('tabsBar').style.display = 'flex';
   switchSubtab('overview');
 
-  // Animate bars after paint
   requestAnimationFrame(() => requestAnimationFrame(() => {
     document.querySelectorAll('.stat-fill[data-pct]').forEach(b => {
       b.style.width = b.getAttribute('data-pct') + '%';
@@ -1157,9 +1048,6 @@ function renderPokemon(d, spec, evo) {
   window.scrollTo({ top: document.getElementById('tabsBar').offsetTop - 70, behavior: 'smooth' });
 }
 
-/* ══════════════════════════════════════════════════
-   RENDER STATS
-══════════════════════════════════════════════════ */
 function renderStats(stats) {
   let html = '';
   let ivHtml = '';
@@ -1173,7 +1061,6 @@ function renderStats(stats) {
     const col = STAT_COLORS[n] || '#888';
     const lbl = STAT_NAMES[n] || n;
 
-    // Calc Lv100 ranges
     const isHp = n === 'hp';
     const minStat = isHp
       ? Math.floor(((2*b+0+0)*100/100)+100+10)
@@ -1212,9 +1099,6 @@ function renderStats(stats) {
   document.getElementById('ivRows').innerHTML = ivHtml;
 }
 
-/* ══════════════════════════════════════════════════
-   RENDER NATURES
-══════════════════════════════════════════════════ */
 function renderNatures(stats) {
   const sm = {};
   stats.forEach(s => { sm[s.stat.name] = s.base_stat; });
@@ -1248,9 +1132,6 @@ function renderNatures(stats) {
   }).join('');
 }
 
-/* ══════════════════════════════════════════════════
-   TYPE EFFECTIVENESS
-══════════════════════════════════════════════════ */
 function renderTypeEff(defTypes) {
   const calc = {};
   ALL_TYPES.forEach(atk => {
@@ -1292,9 +1173,6 @@ function renderTypeEff(defTypes) {
   document.getElementById('teGrid').innerHTML = html;
 }
 
-/* ══════════════════════════════════════════════════
-   EVOLUTION CHAIN
-══════════════════════════════════════════════════ */
 async function renderEvo(chain, currentName) {
   const nodes = [];
   function walk(node, trig) {
@@ -1314,7 +1192,6 @@ async function renderEvo(chain, currentName) {
   }
   walk(chain, null);
 
-  // Get sprite IDs
   const idMap = {};
   nodes.forEach(n => {
     const found = allPokemon.find(p => p.name === n.name);
@@ -1343,11 +1220,7 @@ async function renderEvo(chain, currentName) {
   document.getElementById('evoChain').innerHTML = html || `<span style="color:var(--text-3)">Does not evolve.</span>`;
 }
 
-/* ══════════════════════════════════════════════════
-   COUNTERS
-══════════════════════════════════════════════════ */
 async function renderCounters(types) {
-  // Find what types this pokemon is weak to
   const weakTo = [];
   ALL_TYPES.forEach(atk => {
     let m = 1;
@@ -1373,9 +1246,6 @@ async function renderCounters(types) {
     `<span style="color:var(--text-3)">No counter data available.</span>`;
 }
 
-/* ══════════════════════════════════════════════════
-   BEST MOVES
-══════════════════════════════════════════════════ */
 function renderBestMoves(movesRaw, pokeTypes) {
   const scored = [];
   movesRaw.forEach(m => {
@@ -1427,14 +1297,10 @@ function renderBestMoves(movesRaw, pokeTypes) {
   }).join('');
 }
 
-/* ══════════════════════════════════════════════════
-   MOVES TABLE
-══════════════════════════════════════════════════ */
 function renderMovesTable(movesRaw, filter) {
   activeFilter = filter;
   document.querySelectorAll('.filter-btn').forEach(b => b.classList.toggle('on', b.getAttribute('data-f')===filter));
-
-  // Build flat rows
+   
   let rows = [];
   movesRaw.forEach(m => {
     const name = m.move.name;
@@ -1455,7 +1321,6 @@ function renderMovesTable(movesRaw, filter) {
     });
   });
 
-  // Sort: level-up by level, then TM, egg, tutor
   const ord = {'level-up':0,machine:1,egg:2,tutor:3};
   rows.sort((a,b) => {
     const ao=ord[a.method]??4, bo=ord[b.method]??4;
@@ -1463,10 +1328,8 @@ function renderMovesTable(movesRaw, filter) {
     return (a.level||0)-(b.level||0);
   });
 
-  // Filter
   if (filter !== 'all') rows = rows.filter(r => r.method===filter);
 
-  // Dedup
   const seen = new Set();
   rows = rows.filter(r => {
     const k = r.name+r.method;
@@ -1515,9 +1378,6 @@ function getCatSvg(cat) {
   return `<svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="margin-right:3px;flex-shrink:0"><line x1="5" y1="12" x2="19" y2="12"/><line x1="12" y1="5" x2="12" y2="19"/></svg>`;
 }
 
-/* ══════════════════════════════════════════════════
-   SPRITE TOGGLE
-══════════════════════════════════════════════════ */
 function cycleSprite() {
   if (!currentSprites.length) return;
   spriteIdx = (spriteIdx + 1) % currentSprites.length;
@@ -1534,9 +1394,6 @@ function toggleShiny() {
   document.getElementById('shinyBtn').style.color = shinyMode ? 'var(--accent)' : '';
 }
 
-/* ══════════════════════════════════════════════════
-   MOVE SEARCH
-══════════════════════════════════════════════════ */
 function triggerMoveSearch() {
   const v = document.getElementById('moveInput').value.trim();
   if (v) searchMove(v);
@@ -1620,9 +1477,6 @@ function renderMoveDetail(d) {
   document.getElementById('move-result').classList.add('on');
 }
 
-/* ══════════════════════════════════════════════════
-   UTILITIES
-══════════════════════════════════════════════════ */
 function setLoading(on) {
   document.getElementById('loader').classList.toggle('on', on);
 }
